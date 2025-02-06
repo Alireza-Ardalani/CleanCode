@@ -1,0 +1,56 @@
+using edu.stanford.nlp.ling;
+using edu.stanford.nlp.tagger.maxent;
+using Microsoft.CodeAnalysis.CSharp;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
+using NetSpell.SpellChecker;
+using NetSpell.SpellChecker.Dictionary;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Data;
+using System.Diagnostics;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+namespace WebApplication11
+{
+    public partial class result : System.Web.UI.Page
+    {
+       
+
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            DataTable dt = new DataTable();
+            dt.Columns.Add("#", typeof(string));
+            dt.Columns.Add("cleanCode Principle", typeof(string));
+            dt.Columns.Add("count", typeof(string));
+            
+           
+            string address = @"..\..\inputcode\";
+            address += this.Session["id"].ToString();
+            Src.fileNameSrc = address;
+            var solution = new Solution(Src.fileNameSrc);
+            if (solution.Projects.Count == 0)
+            {
+                return;
+            }
+            // ProcessDirectory(Path.GetDirectoryName(Src.fileNameSrc) + "/" + solution.Projects.First().ProjectName);
+           
+
+            dt.Rows.Add("1", "cleeeeeeeeeeeeeeeeeeeeeeeeeeeeeeen coooooooooooooooooooooooooooooooooooooooooooode ", "4");
+            dt.Rows.Add("2", "cleeee222eeeeeeeeeen coooooooooooooooooooooooooooooooooooooooooooode ", "4");
+            dt.Rows.Add("2", address, "4");
+            GridView1.DataSource = dt.DefaultView;
+            GridView1.DataBind();
+           
+
+
+
+        }
+
+    }
+}
